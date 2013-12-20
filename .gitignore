@@ -6,3 +6,5 @@
 *.swp
 solutions.fdb_latexmk
 solutions.fls
+.texpadtmp/
+.texpadtmp/*
