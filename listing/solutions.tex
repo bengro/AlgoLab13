@@ -1,8 +1,22 @@
-\documentclass[a4paper, 11pt]{article}
+\documentclass[a4paper, 10pt]{article}
 
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{MnSymbol}
+\usepackage{geometry}
+\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage[x11names,svgnames,dvipsnames]{xcolor}
+\usepackage{titlesec}    % used for automatic page break.
+
+\geometry{a4paper, left=15mm, right=15mm, top=15mm, bottom=15mm}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+% making sure every section starts on new page.
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
 
 %use arrows to indicate line breaks in listings
 \lstset{prebreak=\raisebox{0ex}[0ex][0ex]
@@ -11,7 +25,15 @@
         {\ensuremath{\rcurvearrowse\space}}}
 \lstset{breaklines=true, breakatwhitespace=true}
 \lstset{numbers=left, numberstyle=\scriptsize}
+\lstset{
+keywordstyle=\color{blue},
+tabsize=4,
+commentstyle=\color{dkgreen},
+stringstyle=\color{mauve},
+numberstyle=\tiny\color{gray}
+}
 
+\newcommand{\sectionbreak}{\clearpage}    %breaks page before section.
 
 %define general listing command
 \newcommand{\includecode}[1]{
@@ -19,33 +41,27 @@
                         basicstyle=\small,
                         breaklines=true,
                         breakautoindent=true,
-                        linewidth=15cm]{#1}}
+                        linewidth=19cm]{#1}}
 
 \begin{document}
-    \begin{tabular}{ l  c  c  c  r  r}
-        topic & problem & name & author & location\\
-      \hline
-        ACM & \textit{Given a set of intervals...} & Aliens & Ben & \ref{sec:aliens} \\
-        & \textit{Given ...} & Checking Change & Ben & \ref{sec:checking_change} \\
-    \end{tabular}
+    \setcounter{tocdepth}{1}
+    \tableofcontents
     
-    \begin{section}{Checking Change}
+    \section{Checking Change}
+        \subsection{Description}
+        \subsection{Solution}
         \label{sec:aliens}
         \includecode{../problems/w01/Checking_Change/CheckingChange1.cpp}
-    \end{section}
     
-    \begin{section}{Dominoes}
+    \section{Dominoes}
         \label{sec:aliens}
         \includecode{../problems/w01/Dominoes/Dominoes1.cpp}
-    \end{section}
     
-    \begin{section}{Shelves}
+    \section{Shelves}
         \label{sec:aliens}
         \includecode{../problems/w01/Shelves/Shelves1.cpp}
-    \end{section}
+        
+    \section{Even Pairs}
+        Even Pairs missing
     
-    Even Pairs missing
-    
-    
-
 \end{document}
