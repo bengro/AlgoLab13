@@ -1,6 +1,6 @@
 \documentclass[a4paper, 10pt]{article}
 
-\usepackage{hyperref}
+\usepackage{hyperref}   % hyperlinking toc
 \usepackage{listings}
 \usepackage{MnSymbol}
 \usepackage{geometry}
@@ -8,8 +8,10 @@
 \usepackage{algorithm}
 \usepackage[x11names,svgnames,dvipsnames]{xcolor}
 \usepackage{titlesec}    % used for automatic page break.
+\usepackage{multicol}    % used for two col table of contents
+\usepackage{tocloft}     % dotted lines in toc
 
-\geometry{a4paper, left=15mm, right=15mm, top=15mm, bottom=15mm}
+\geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
@@ -17,6 +19,8 @@
 % making sure every section starts on new page.
 \let\stdsection\section
 \renewcommand\section{\newpage\stdsection}
+\renewcommand{\thesection}{\hspace*{-1.0em}}    % removing numbering of section
+\renewcommand{\thesubsection}{\arabic{subsection}}    % numbering subsection
 
 %use arrows to indicate line breaks in listings
 \lstset{prebreak=\raisebox{0ex}[0ex][0ex]
@@ -41,27 +45,224 @@ numberstyle=\tiny\color{gray}
                         basicstyle=\small,
                         breaklines=true,
                         breakautoindent=true,
-                        linewidth=19cm]{#1}}
+                        linewidth=18cm]{#1}}
 
 \begin{document}
-    \setcounter{tocdepth}{1}
-    \tableofcontents
+
+    \begin{multicols}{2}
+        \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+        \renewcommand*\contentsname{Problems}
+        \setcounter{tocdepth}{1}    % only show problem titles.
+        \tableofcontents
+    \end{multicols}
+    
+    %%%%%% week 1
     
     \section{Checking Change}
-        \subsection{Description}
-        \subsection{Solution}
-        \label{sec:aliens}
         \includecode{../problems/w01/Checking_Change/CheckingChange1.cpp}
     
     \section{Dominoes}
-        \label{sec:aliens}
         \includecode{../problems/w01/Dominoes/Dominoes1.cpp}
     
     \section{Shelves}
-        \label{sec:aliens}
         \includecode{../problems/w01/Shelves/Shelves1.cpp}
         
     \section{Even Pairs}
         Even Pairs missing
+    
+    %%%%%% week 2
+    
+    \section{Aliens}
+        \includecode{../problems/w02/Aliens/Aliens1.cpp}
+        
+    \section{Boats}
+        \includecode{../problems/w02/Boats/Boats1.cpp}
+        
+    \section{False Coin}
+        \includecode{../problems/w02/False_Coin/FalseCoin1.cpp}
+        
+    \section{Formulas}
+        \includecode{../problems/w02/Formulas/Formulas1.cpp}
+        
+    \section{Race Tracks}
+        \includecode{../problems/w02/Race_Tracks/RaceTracks1.cpp}
+
+    %%%%%% week 3
+    
+    \section{Burning Coins}
+        \includecode{../problems/w03/Burning_Coins/BurningCoin1.cpp}
+        
+    \section{Jump}
+        \includecode{../problems/w03/Jump/Jump1.cpp}
+        
+    \section{Light Pattern}
+        \includecode{../problems/w03/Light_Pattern/LightPatterns1.cpp}
+        
+    \section{Longest Path}
+        \includecode{../problems/w03/Longest_Path/LongestPath1.cpp}
+        \includecode{../problems/w03/Longest_Path/LongestPathTraversal1.cpp}
+             
+    %%%%%% week 4
+              
+    \section{Ants}
+        \includecode{../problems/w04/Ants/Ants1.cpp}
+        
+    \section{Bridges}
+        \includecode{../problems/w04/Bridges/Bridges1_BGL.cpp}
+        \includecode{../problems/w04/Bridges/Bridges1_Handmade.cpp}
+        
+    \section{Build The Graph}
+        \includecode{../problems/w04/Build_The_Graph/BuildTheGraph1.cpp}
+        
+    \section{Deleted Entries}
+        \includecode{../problems/w04/Deleted_Entries/DeletedEntries1.cpp}
+    
+    \section{Shy Programmers}
+        \includecode{../problems/w04/Shy_Programmers/ShyProgrammers1.cpp}
+
+    %%%%%% week 5
+    
+    \section{Algocoon Group}
+        Missing.
+        
+    \section{Buddies}
+        \includecode{../problems/w05/Buddies/Buddies1.cpp}
+        
+    \section{Satellites}
+        \includecode{../problems/w05/Satellites/Satellites1.cpp}
+        
+    \section{Kingdom Defence}
+        \includecode{../problems/w05/Kingdom_Defense/KingdomDefence1.cpp}
+    
+    \section{Coin Tossing}
+        \includecode{../problems/w05/Coin_Tossing/CoinToss1.cpp}
+          
+    %%%%%% week 6
+
+    \section{Antenna}
+        \includecode{../problems/w06/Antenna/Antenna1.cpp}
+        
+    \section{Almost Antenna}
+        \includecode{../problems/w06/AlmostAntenna/AlmostAntenna1.cpp}
+        
+    \section{Hit}
+        \includecode{../problems/w06/Hit/Hit1.cpp}
+        
+    \section{First Hit}
+        \includecode{../problems/w06/FirstHit/FirstHit1.cpp}
+    
+    \section{Search Snippets}
+        \includecode{../problems/w06/Search_Snippets/SearchSnippets1.cpp}
+              
+    %%%%%% week 7
+    
+    \section{Bistro}
+        \includecode{../problems/w07/Bistro/Bistro1.cpp}
+        
+    \section{Germs}
+        \includecode{../problems/w07/Germs/Germs1.cpp}
+        
+    \section{Graypes}
+        \includecode{../problems/w07/Graypes/Graypes1.cpp}
+        
+    \section{H1N1}
+        \includecode{../problems/w07/H1N1/H1N1_1.cpp}
+    
+    \section{HikingMaps}
+        \includecode{../problems/w07/HikingMaps/HikingMaps1.cpp}
+    
+    %%%%%% week 8
+    
+    \section{Maximize It!}
+        \includecode{../problems/w08/WhatMaximum/MaximizeIt1.cpp}
+        
+    \section{Collisions}
+        \includecode{../problems/w08/Collisions/Collisions1.cpp}
+        
+    \section{Diet}
+        \includecode{../problems/w08/Diet/Diet1.cpp}
+        
+    \section{Porfolios}
+        \includecode{../problems/w08/Portfolios/Portfolios1.cpp}
+    
+    \section{Inball}
+        \includecode{../problems/w08/Inball/Inball1.cpp}
+    
+    %%%%%% week 9
+    
+    \section{Monkey Island}
+        \includecode{../problems/w09/MonkeyIsland/MonkeyIsland1.cpp}
+        
+    \section{Placing Knights}
+        \includecode{../problems/w09/Placing_Knights/PlacingKnights1.cpp}
+        
+    \section{Shopping Trip}
+        \includecode{../problems/w09/Shopping_Trip/ShoppingTrip1.cpp}
+        
+    \section{TheeV}
+        \includecode{../problems/w09/TheeV/TheeV1.cpp}
+   
+    %%%%%% week 10
+    
+    \section{Poker Chips}
+        \includecode{../problems/w10/Poker_Chips/PokerChips1.cpp}
+        
+    \section{Portfolio Revisited}
+        \includecode{../problems/w10/Portfolios_Revisited/PortfolioRevisited1.cpp}
+        
+    \section{Stamp Exhibition}
+        \includecode{../problems/w10/Stamp_Exhibition/Stamps1.cpp}
+        
+    \section{Tetris}
+        \includecode{../problems/w10/Tetris/Tetris1.cpp}
+ 
+    %%%%%% week 11
+    
+    \section{Beach Bar}
+        \includecode{../problems/w11/Beach_Bar/BeachBar1.cpp}
+        
+    \section{Cover}
+        \includecode{../problems/w11/Cover/Cover1.cpp}
+        
+    \section{Divisor Distance}
+        \includecode{../problems/w11/Divisor_Distance/DivisorDistance1.cpp}
+        
+    \section{Tiles}
+        \includecode{../problems/w11/Tiles/Tiles1.cpp}
+        
+    %%%%%% week 12
+    
+    \section{Deleted Entries Stike Back}
+        Missing.
+        %\includecode{../problems/w12/Deleted_Entries_Strike_Back/Sol1.cpp}
+        
+    \section{Light The Stage}
+        Missing.
+        %\includecode{../problems/w12/LightTheStage/LightTheStage1.cpp}
+        
+    \section{Radiation}
+        Missing.
+        %\includecode{../problems/w12/Radiation/Radiation1.cpp}
+        
+    \section{Sweepers}
+        \includecode{../problems/w12/Sweepers/Sweepers1.cpp}
+        
+    \section{The Bracelet}
+        \includecode{../problems/w12/The_Bracelet/Bracelet1.cpp}
+        
+    %%%%%% week 13
+    
+    \section{Knights}
+        \includecode{../problems/w13/Knights/Knights1.cpp}
+        
+    \section{Next Path}
+        \includecode{../problems/w13/NextPath/NextPath1.cpp}
+        
+    \section{Odd Route}
+        \includecode{../problems/w13/OddRoute/OddRoute1.cpp}
+        
+    \section{Radiation 2}
+        Missing.
+        %\includecode{../problems/w13/Radiation/Radiation1.cpp}
     
 \end{document}
