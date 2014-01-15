@@ -12,7 +12,7 @@
 \usepackage{tocloft}     % dotted lines in toc
 
 \geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{dkgreen}{rgb}{0,0.5,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
@@ -30,6 +30,8 @@
 \lstset{breaklines=true, breakatwhitespace=true}
 \lstset{numbers=left, numberstyle=\scriptsize}
 \lstset{
+basicstyle=\footnotesize\ttfamily,
+basewidth  = {.5em,0.5em},
 keywordstyle=\color{blue},
 tabsize=4,
 commentstyle=\color{dkgreen},
@@ -42,7 +44,6 @@ numberstyle=\tiny\color{gray}
 %define general listing command
 \newcommand{\includecode}[1]{
     \lstinputlisting[   language=C++,
-                        basicstyle=\small,
                         breaklines=true,
                         breakautoindent=true,
                         linewidth=18cm]{#1}}
