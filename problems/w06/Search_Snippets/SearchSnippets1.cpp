@@ -1,66 +1,59 @@
 #include <iostream>
 #include <vector>
-#include <algorithm>
 #include <queue>
-#include <functional>
-#include <cmath>
+#include <climits>
 using namespace std;
 
 typedef vector<int> vi;
+typedef vector<vi> vii;
 
 void testcase() {
-	int n; cin >> n;
-	vector<vi> posting_list(n);
+    int N; cin >> N;
+    vi count;
+    for(int n = 0; n < N; ++n) {
+        int m; cin >> m;
+        count.push_back(m);
+    }
+    
+    vii lists(N);
+    for(int n = 0; n < N; ++n) {
+        for(int m = 0; m < count[n]; ++m) {
+            int p; cin >> p;
+            lists[n].push_back(p);
+        }
+    }
 
-	vi Npositions(n);
-	for(int i = 0; i < n; ++i) { int m; cin >> m; Npositions[i] = m; }
+    priority_queue<pair<int, pair<int, int> > > max_heap;
+    priority_queue<pair<int, pair<int, int> >, vector<pair<int, pair<int, int> > >, greater<pair<int, pair<int, int> > > > min_heap;
+    for(int n = 0; n < N; ++n) {
+        max_heap.push(make_pair(lists[n][0], make_pair(n, 0)));
+        min_heap.push(make_pair(lists[n][0], make_pair(n, 0)));
+    }
+    
+    int min_interval = INT_MAX;
+    while(true) {
+        pair<int, pair<int, int> > a = min_heap.top();
+        pair<int, pair<int, int> > b = max_heap.top();
+        int interval = b.first - a.first + 1;
 
-	for(int word = 0; word < Npositions.size(); ++word) {
-		for(int position = 0; position < Npositions[word]; ++position) {
-			int input_position; cin >> input_position;
-			posting_list[word].push_back(input_position);
-		}
-	}
+        min_interval = min(interval, min_interval);
+        int min_list = a.second.first;
+        int element = a.second.second;
+        
+        if(element+1 < lists[min_list].size()) {
+            max_heap.push(make_pair(lists[min_list][element+1], make_pair(min_list, element+1)));
+            min_heap.pop();
+            min_heap.push(make_pair(lists[min_list][element+1], make_pair(min_list, element+1)));
+        } else {
+            break;
+        }
+    }
 
-	vi pointers(n, 0);
-	priority_queue<int> max_heap;
-	priority_queue<pair<int, int>, std::vector<pair<int, int> >, greater<pair<int, int> > > min_heap;
-
-	for(int list = 0; list < n; ++list) {
-		int value = posting_list[list][pointers[list]];
-		max_heap.push(value); 
-		min_heap.push(make_pair(value, list));
-	}
-
-	int min_interval = 1073741825;
-	while(true) {
-		pair<int, int> min_pair = min_heap.top(); min_heap.pop();
-		int min_value = min_pair.first;
-		int min_list = min_pair.second;
-		
-		int max_value = max_heap.top();
-		int min_new = abs(max_value - min_value);
-		min_interval = min(min_new, min_interval);
-		
-		if(pointers[min_list] == posting_list[min_list].size()-1) { break; }
-		int jump = sqrt(posting_list[min_list].size());
-		while((pointers[min_list]+jump < posting_list[min_list].size()-1) && 
-			(posting_list[min_list][pointers[min_list]+jump] < min_heap.top().first)) {
-			pointers[min_list] += jump;
-		}
-		pointers[min_list]++;
-
-		int new_value = posting_list[min_list][pointers[min_list]];
-		max_heap.push(new_value);
-		min_heap.push(make_pair(new_value, min_list));
-	}
-
-	cout << min_interval+1 << "\n";
+    cout << min_interval << "\n";
 }
 
 int main() {
-	ios_base::sync_with_stdio(false);
-	int TC; cin >> TC;
-	while(TC--) testcase();
-	return 0;
+    int TC; cin >> TC;
+    while (TC--) testcase();
+    return 0;
 }
