@@ -11,9 +11,10 @@
 \usepackage{multicol}    % used for two col table of contents
 \usepackage{tocloft}     % dotted lines in toc
 \usepackage[T1]{fontenc} % needed for copy paste bug (underscores = spaces)
+\usepackage{appendix}
 
 \geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
-\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{dkgreen}{rgb}{0,0.5,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
@@ -31,6 +32,8 @@
 \lstset{breaklines=true, breakatwhitespace=true}
 \lstset{numbers=left, numberstyle=\scriptsize}
 \lstset{
+basicstyle=\footnotesize\ttfamily,
+basewidth  = {.5em,0.5em},
 keywordstyle=\color{blue},
 tabsize=4,
 commentstyle=\color{dkgreen},
@@ -43,7 +46,6 @@ numberstyle=\tiny\color{gray}
 %define general listing command
 \newcommand{\includecode}[1]{
     \lstinputlisting[   language=C++,
-                        basicstyle=\small,
                         breaklines=true,
                         breakautoindent=true,
                         linewidth=18cm]{#1}}
@@ -69,7 +71,7 @@ numberstyle=\tiny\color{gray}
         \includecode{../problems/w01/Shelves/Shelves1.cpp}
         
     \section{Even Pairs}
-        Even Pairs missing
+        \includecode{../problems/w01/Even_Pairs/EvenPairs1.cpp}
     
     %%%%%% week 2
     
@@ -124,7 +126,7 @@ numberstyle=\tiny\color{gray}
     %%%%%% week 5
     
     \section{Algocoon Group}
-        Missing.
+        \includecode{../problems/w05/Buddies/Buddies1.cpp}
         
     \section{Buddies}
         \includecode{../problems/w05/Buddies/Buddies1.cpp}
@@ -230,7 +232,24 @@ numberstyle=\tiny\color{gray}
         
     \section{Tiles}
         \includecode{../problems/w11/Tiles/Tiles1.cpp}
+    
+    \section{Connecting Capitals}
+        All the following algorithms run in linear time.
         
+        \subsection{Maximum Matching in Tree}
+        \includecode{../problems/w11/Connecting_Capitals/MaximumMatchingTree.cpp}
+        
+        \subsection{Outputting Maximum Matching}
+        \includecode{../problems/w11/Connecting_Capitals/MaximumMatchingTreeOutput.cpp}
+        
+        \subsection{MVC in Tree}
+        Selection of the minimum set of vertices such that all edges are incident to one vertex.
+        \includecode{../problems/w11/Connecting_Capitals/MinimumVertexCoverTree.cpp}
+        
+        \subsection{MIS in Tree}
+        Selects a set of vertices, such that none of them are adjacent.
+        \includecode{../problems/w11/Connecting_Capitals/MaximumIndependentSetTree.cpp}
+          
     %%%%%% week 12
     
     \section{Deleted Entries Stike Back}
@@ -238,12 +257,10 @@ numberstyle=\tiny\color{gray}
         %\includecode{../problems/w12/Deleted_Entries_Strike_Back/Sol1.cpp}
         
     \section{Light The Stage}
-        Missing.
-        %\includecode{../problems/w12/LightTheStage/LightTheStage1.cpp}
+        \includecode{../problems/w12/LightTheStage/LightTheStage1.cpp}
         
     \section{Radiation}
-        Missing.
-        %\includecode{../problems/w12/Radiation/Radiation1.cpp}
+        \includecode{../problems/w12/Radiation/Radiation1.cpp}
         
     \section{Sweepers}
         \includecode{../problems/w12/Sweepers/Sweepers1.cpp}
