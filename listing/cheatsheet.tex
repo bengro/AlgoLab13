@@ -8,14 +8,14 @@
 \usepackage{listings}
 \usepackage{geometry}
 \usepackage[compact]{titlesec}
+\usepackage[utf8]{inputenc}
 
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
-\titlespacing{\section}{0pt}{0pt}{15pt}
-\titlespacing{\subsection}{0pt}{+10pt}{0pt}
-\titlespacing{\subsubsection}{0pt}{+10pt}{-5pt}
+\title{Cheatsheet Algorithms Lab 2013}
+\author{Benjamin Gröhbiel, ETH Zurich}
 
 \geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
 
@@ -35,10 +35,18 @@ stringstyle=\color{mauve},
 numberstyle=\tiny\color{gray},
 language=C++,
 breaklines=true,
-breakautoindent=true
+breakautoindent=true,
+frameround=ffff,
+frame=single,
+belowcaptionskip=3em,
+belowskip=3em
 }
 
-
+\newcommand{\includecode}[1]{
+    \lstinputlisting[   language=C++,
+                        breaklines=true,
+                        breakautoindent=true]{#1}}
+                        
 % making sure every section starts on new page.
 \let\stdsection\section
 \renewcommand\section{\newpage\stdsection}
@@ -48,28 +56,9 @@ breakautoindent=true
 
 \begin{document}
 
-\section{ACM Cheatsheet}
+\maketitle
 
-\subsection{Powers of 2}
-\begin{tabular}{ccc}
-  Powers of 2 & Value & Powers of 10 \\
-  $2^{0}$ & 1 & $10^{0}$ \\
-  $2^{1}$ & 2 &  \\
-  $2^{2}$ & 4 &  \\
-  $2^{3}$ & 8 & $10^{1}$ \\
-  $2^{4}$ & 16 & $10^{0}$ \\
-  $2^{5}$ & 32 & $10^{0}$ \\
-  $2^{6}$ & 64 & $10^{0}$ \\
-  $2^{7}$ & 128 & $10^{3}$ \\
-  $2^{8}$ & 256 & $10^{0}$ \\
-  $2^{9}$ & 512 & $10^{0}$ \\
-  $2^{10}$ & 1024 & $1000^{1}$ \\
-  $2^{20}$ & 1048576 & $1000^{2}$ \\
-  $2^{30}$ & 1073741824 & $1000^{3}$ \\
-  $2^{40}$ &  & $1000^{4}$ \\
-  $2^{50}$ &  & $1000^{5}$ \\
-  $2^{60}$ &  & $1000^{6}$ \\
- \end{tabular}
+\section{ACM Cheatsheet}
  
 \subsection{Bit Operations}
 \subsubsection{Checking if ith bit set:}
@@ -183,6 +172,27 @@ priority_queue<int, vector<int>, greater<int> > min_heap;    // integers
 priority_queue<pair<long long, int>, vector<pair<long long, int> >, greater<pair<long long, int> > > min_heap;    // pairs
 \end{lstlisting}
 
+\subsection{Powers of 2}
+\begin{tabular}{ccc}
+  Powers of 2 & Value & Powers of 10 \\
+  $2^{0}$ & 1 & $10^{0}$ \\
+  $2^{1}$ & 2 &  \\
+  $2^{2}$ & 4 &  \\
+  $2^{3}$ & 8 & $10^{1}$ \\
+  $2^{4}$ & 16 & $10^{0}$ \\
+  $2^{5}$ & 32 & $10^{0}$ \\
+  $2^{6}$ & 64 & $10^{0}$ \\
+  $2^{7}$ & 128 & $10^{3}$ \\
+  $2^{8}$ & 256 & $10^{0}$ \\
+  $2^{9}$ & 512 & $10^{0}$ \\
+  $2^{10}$ & 1024 & $1000^{1}$ \\
+  $2^{20}$ & 1048576 & $1000^{2}$ \\
+  $2^{30}$ & 1073741824 & $1000^{3}$ \\
+  $2^{40}$ &  & $1000^{4}$ \\
+  $2^{50}$ &  & $1000^{5}$ \\
+  $2^{60}$ &  & $1000^{6}$ \\
+ \end{tabular}
+
 %%%%%%%%%%%%
 
 \section{BGL Cheatsheet}
@@ -203,6 +213,10 @@ kruskal_minimum_spanning_tree(g, std::back_inserter(spanning_tree));
 \end{lstlisting}
 
 \subsection{Dijkstra Shortest Path}
+\begin{itemize}
+  \item Usage can output a warning.
+\end{itemize}
+
 \begin{lstlisting}
 #include <boost/graph/dijkstra_shortest_paths.hpp>
 // edge weight need to be set!
@@ -212,6 +226,9 @@ dijkstra_shortest_paths(g, s, predecessor_map(&p[0]).distance_map(&d[0]));
 \end{lstlisting}
 
 \subsection{Undirected Graph}
+\begin{itemize}
+  \item 4. parameter: vertex properties, 5. parameter edge properties.
+\end{itemize}
 \begin{lstlisting}
 typedef adjacency_list<vecS, vecS, undirectedS, no_property, no_property > Graph;
 \end{lstlisting}
@@ -229,14 +246,23 @@ int nscc = strong_components(g, &scc[0]);
 \end{lstlisting}
 
 \subsection{Planarity testing}
-Eulers formula: $F + V - E = 2$
+\begin{itemize}
+  \item Eulers formula: $F + V - E = 2$
+\end{itemize}
+
 \begin{lstlisting}
 #include <boost/graph/boyer_myrvold_planar_test.hpp>
 typedef adjacency_list<vecS, vecS, undirectedS, no_property, no_property> Graph;
-boyer_myrvold_planarity_test(g)
+bool isPlanar = boyer_myrvold_planarity_test(g);
 \end{lstlisting}
 
 \subsection{Maximum Matching Undirected Graph}
+\begin{itemize}
+  \item Maximum Matching = MVC
+  \item |V| - |MVC| = MIS
+  \item Given matching, obtain MVC by: 1) set all vertices to unvisited. 2) set all unmatched vertices in L to visited. 3) Run DFS from each visited vertex. 4) All unvisited vertices in L, and all visited vertices in R comprise the MVC.
+\end{itemize}
+
 \begin{lstlisting}
 #include <boost/graph/max_cardinality_matching.hpp>
 vector<Vertex> mateMap(num_vertices(g));
@@ -248,6 +274,10 @@ mateMap[v_id] == graph_traits<Graph>::null_vertex()
 \end{lstlisting}
 
 \subsection{Network Flow}
+\begin{itemize}
+  \item Caution: no negative edge weight!
+\end{itemize}
+
 \begin{lstlisting}
 #include <boost/tuple/tuple.hpp>
 #include <boost/graph/adjacency_list.hpp>
@@ -338,7 +368,15 @@ for(tie(vbegin, vend) = vertices(g); vbegin != vend; ++vbegin) {
 }
 \end{lstlisting}
 
-
+\subsection{Iterating over adjacent vertices}
+\begin{lstlisting}
+typedef graph_traits<Graph>::adjacency_iterator AI;
+AI ai, ai_end;
+for(tie(ai,ai_end) = adjacent_vertices(v, g); ai != ai_end; ++ai){
+    *ai   // vertex id
+    ai    // vertex_descriptor
+}
+\end{lstlisting}
 
 %%%%%%%%%%%%
 
@@ -352,18 +390,21 @@ cout << std::setiosflags(std::ios::fixed) << std::setprecision(0);
 \end{lstlisting}
 
 \begin{lstlisting}
-CGAL::has_smaller_distance_to_point(origin, p1, p2)    // true p1, false p2 
+CGAL::has_smaller_distance_to_point(origin, p1, p2)    // true p1 closer to origin, false p2 closer to origin 
 CGAL::squared_distance(K::Point_2, K::Point_2);
 \end{lstlisting}
 
 \subsubsection{Includes}
+\begin{itemize}
+  \item Use exact construction for Min circle.
+  \item If sqrt only needed for output, we can covert to double and use CGAL::sqrt.
+\end{itemize}
+
 \begin{lstlisting}
 #include <CGAL/Exact_predicates_exact_constructions_kernel_with_sqrt.h>
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 #include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
-\end{lstlisting}
 
-\begin{lstlisting}
 typedef CGAL::Exact_predicates_exact_constructions_kernel_with_sqrt K;
 typedef CGAL::Exact_predicates_exact_constructions_kernel K;
 typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
@@ -437,8 +478,14 @@ Triangulation::Vertex_handle v = t.nearest_vertex(Point);
 vector<K::Point_2> points;
 Delaunay t;
 t.insert(points.begin(), points.end());
+t.nearest_vertex(K::Point_2);    // returns Vertex_handle to nearest point.
 \end{lstlisting}
 
+\begin{lstlisting}
+Delaunay::Face_handle start_face = t.locate(coord);
+if(t.is_infinite(start_face)) {}
+\end{lstlisting}
+      
 \subsubsection{Iterate over finite edges}
 \begin{lstlisting}
 typedef Delaunay::Finite_edges_iterator FEI;
@@ -451,7 +498,6 @@ for(FEI edge = t.finite_edges_begin(); edge != t.finite_edges_end(); ++edge) {
     K::Segment_2 seg = t.segment(edge);
 }
 \end{lstlisting}
-
 
     
 \subsubsection{Iterate over finite vertices}
@@ -542,5 +588,36 @@ s.is_infeasible()
 s.is_unbounded()
 CGAL::to_double(s.objective_value())
 \end{lstlisting}
+
+%%%%%%%%%%%%
+
+\section{Snippets}
+
+\subsection{Merge sort}
+\includecode{../snippets/MergeSort.cpp}
+
+\subsection{DP LIS}
+\includecode{../snippets/LIS_Iterative.cpp}
+\includecode{../snippets/LIS_recursive.cpp}
+
+The following snippets solves the LIS problem in $O(n log n)$. It is based on patience sorting (piles of decreasing cards).
+\includecode{../snippets/LIS_greedy.cpp}
+
+\subsection{Union Find}
+Union find data structure keeps track of sets and has complexities $O(1)$ for checking if an object is in the same set, and inserting a new object relation. 
+\includecode{../snippets/UnionFind.cpp}
+
+\subsection{Print Euler Tour}
+Based on vertices, see Bracelet problem for edge-based solution.
+\includecode{../snippets/EulerianCycle.cpp}
+
+\subsection{Shortest Path in DAG}
+\includecode{../snippets/DAG_SSSP.cpp}
+
+\subsection{Stack based DFS}
+\includecode{../snippets/DFS_iterative.cpp}
+
+\subsection{Recursive DFS}
+\includecode{../snippets/DFS_recursive.cpp}
 
 \end{document}

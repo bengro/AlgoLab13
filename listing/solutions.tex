@@ -4,14 +4,17 @@
 \usepackage{listings}
 \usepackage{MnSymbol}
 \usepackage{geometry}
-\usepackage{algorithmic}
-\usepackage{algorithm}
 \usepackage[x11names,svgnames,dvipsnames]{xcolor}
 \usepackage{titlesec}    % used for automatic page break.
 \usepackage{multicol}    % used for two col table of contents
 \usepackage{tocloft}     % dotted lines in toc
 \usepackage[T1]{fontenc} % needed for copy paste bug (underscores = spaces)
-\usepackage{appendix}
+\usepackage{makeidx}
+
+\makeindex
+
+\title{Problems Algorithms Lab 2013}
+\author{Benjamin Groehbiel, groehbib@student.ethz.ch, ETH Zurich}
 
 \geometry{a4paper, left=20mm, right=20mm, top=20mm, bottom=20mm}
 \definecolor{dkgreen}{rgb}{0,0.5,0}
@@ -38,7 +41,9 @@ keywordstyle=\color{blue},
 tabsize=4,
 commentstyle=\color{dkgreen},
 stringstyle=\color{mauve},
-numberstyle=\tiny\color{gray}
+numberstyle=\tiny\color{gray},
+frameround=ffff,
+frame=single,
 }
 
 \newcommand{\sectionbreak}{\clearpage}    %breaks page before section.
@@ -47,11 +52,13 @@ numberstyle=\tiny\color{gray}
 \newcommand{\includecode}[1]{
     \lstinputlisting[   language=C++,
                         breaklines=true,
-                        breakautoindent=true,
-                        linewidth=18cm]{#1}}
+                        breakautoindent=true]{#1}}
 
 \begin{document}
-
+    
+    \maketitle
+    \newpage
+    
     \begin{multicols}{2}
         \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
         \renewcommand*\contentsname{Problems}
@@ -59,58 +66,80 @@ numberstyle=\tiny\color{gray}
         \tableofcontents
     \end{multicols}
     
+    \printindex
+    
     %%%%%% week 1
     
     \section{Checking Change}
+        \index{DP!1D}
+        Bottom-up (iterative):
         \includecode{../problems/w01/Checking_Change/CheckingChange1.cpp}
-    
+        Top-down (recursive):
+        \includecode{../problems/w01/Checking_Change/CheckingChangeRecursive1.cpp}
+        
     \section{Dominoes}
+        \index{Scanline!Rightmost point}
         \includecode{../problems/w01/Dominoes/Dominoes1.cpp}
     
     \section{Shelves}
         \includecode{../problems/w01/Shelves/Shelves1.cpp}
         
     \section{Even Pairs}
+        \index{DP!1D}
         \includecode{../problems/w01/Even_Pairs/EvenPairs1.cpp}
     
     %%%%%% week 2
     
     \section{Aliens}
+        \index{Greedy}\index{Scanline!Count intervals not contained by others}
         \includecode{../problems/w02/Aliens/Aliens1.cpp}
         
     \section{Boats}
+        \index{Greedy}
         \includecode{../problems/w02/Boats/Boats1.cpp}
         
     \section{False Coin}
         \includecode{../problems/w02/False_Coin/FalseCoin1.cpp}
         
     \section{Formulas}
+        \index{Merge Sort}
         \includecode{../problems/w02/Formulas/Formulas1.cpp}
         
     \section{Race Tracks}
+        \index{BFS!Without explicit graph}
         \includecode{../problems/w02/Race_Tracks/RaceTracks1.cpp}
 
     %%%%%% week 3
     
     \section{Burning Coins}
+        \index{DP!Top down}
         \includecode{../problems/w03/Burning_Coins/BurningCoin1.cpp}
         
     \section{Jump}
+        \index{DP!Bottom up}
         \includecode{../problems/w03/Jump/Jump1.cpp}
         
     \section{Light Pattern}
+        \index{DP!Bottom up}
         \includecode{../problems/w03/Light_Pattern/LightPatterns1.cpp}
         
     \section{Longest Path}
+        Based on DAG property of tree:
+        \index{DP!Top down}
         \includecode{../problems/w03/Longest_Path/LongestPath1.cpp}
+        
+        Graph traversal: 2xDFS
+        \index{DFS!In Tree}
         \includecode{../problems/w03/Longest_Path/LongestPathTraversal1.cpp}
              
     %%%%%% week 4
               
     \section{Ants}
+        \index{MST}\index{Dijkstra}
         \includecode{../problems/w04/Ants/Ants1.cpp}
         
     \section{Bridges}
+        \index{DFS!Low point}\index{Biconnected Components}
         \includecode{../problems/w04/Bridges/Bridges1_BGL.cpp}
         \includecode{../problems/w04/Bridges/Bridges1_Handmade.cpp}
         
@@ -118,125 +147,195 @@ numberstyle=\tiny\color{gray}
         \includecode{../problems/w04/Build_The_Graph/BuildTheGraph1.cpp}
         
     \section{Deleted Entries}
+        \index{BFS}
         \includecode{../problems/w04/Deleted_Entries/DeletedEntries1.cpp}
     
     \section{Shy Programmers}
+        \index{Planarity Testing}
         \includecode{../problems/w04/Shy_Programmers/ShyProgrammers1.cpp}
 
     %%%%%% week 5
     
     \section{Algocoon Group}
-        \includecode{../problems/w05/Buddies/Buddies1.cpp}
+        \index{Minimum Cut}
+        \includecode{../problems/w05/AlgocooenGroup/AlgoconGroup1.cpp}
         
     \section{Buddies}
+        \index{Maximum Matching!Perfect Matching}
         \includecode{../problems/w05/Buddies/Buddies1.cpp}
         
     \section{Satellites}
+        \index{Minimum Vertex Cover}
         \includecode{../problems/w05/Satellites/Satellites1.cpp}
         
-    \section{Kingdom Defence}
+    \section{Kingdom Defense}
+        \index{Network Flow!Maximum Flow}
+        \index{Network Flow!Edge Lower Bound}
+        \index{Network Flow!Vertex Demands and Supply}
         \includecode{../problems/w05/Kingdom_Defense/KingdomDefence1.cpp}
     
     \section{Coin Tossing}
+        \index{Network Flow!Maximum Flow}
         \includecode{../problems/w05/Coin_Tossing/CoinToss1.cpp}
           
     %%%%%% week 6
 
     \section{Antenna}
+        \index{Min Circle}\index{ceil{\_to}{\_}double}
         \includecode{../problems/w06/Antenna/Antenna1.cpp}
         
     \section{Almost Antenna}
+        \index{Min Circle}\index{Min Circle!Supporting points}
         \includecode{../problems/w06/AlmostAntenna/AlmostAntenna1.cpp}
         
     \section{Hit}
+        \index{Intersection!Point - Ray}
+        \index{Intersection!Point - Segment}
         \includecode{../problems/w06/Hit/Hit1.cpp}
         
     \section{First Hit}
+        \index{Distance!Point - Ray}
+        \index{Distance!Point - Point}
+        \index{Distance!Ray - Segment}
         \includecode{../problems/w06/FirstHit/FirstHit1.cpp}
     
     \section{Search Snippets}
+        \index{Scanline!Shortest interval}
         \includecode{../problems/w06/Search_Snippets/SearchSnippets1.cpp}
               
     %%%%%% week 7
     
     \section{Bistro}
+        \index{Post Office Problem}
+        \index{Delaunay!Nearest Vertex\texttt{\_}handle}
         \includecode{../problems/w07/Bistro/Bistro1.cpp}
         
     \section{Germs}
+        \index{Distance!Segment - Point}
+        \index{Delaunay!Finite Edges Iterator}
+        \index{Scanline!Segment length}
         \includecode{../problems/w07/Germs/Germs1.cpp}
         
     \section{Graypes}
+        \index{Delaunay!Finite Edges Iterator}
+        \index{Delaunay!Edge length}
         \includecode{../problems/w07/Graypes/Graypes1.cpp}
         
     \section{H1N1}
+        \index{Voronoi!Moving along Voronoi Edges and Vertices}
+        \index{Delaunay!BFS on Delaunay Faces}
+        \index{BFS!On Delaunay Faces}
+        \index{Delaunay!locate() Face of Point}
         \includecode{../problems/w07/H1N1/H1N1_1.cpp}
     
     \section{HikingMaps}
+        \index{Triangle!Predicate check segment inside}
+        \index{Clockwise turn}
+        \index{Scanline!Shortest interval}
         \includecode{../problems/w07/HikingMaps/HikingMaps1.cpp}
     
     %%%%%% week 8
     
     \section{Maximize It!}
+        \index{LP!OF with power to 4}
         \includecode{../problems/w08/WhatMaximum/MaximizeIt1.cpp}
         
     \section{Collisions}
+        \index{Delaunay!Finite edges iteration}
+        \index{Delaunay!Vertex Map or Info}
         \includecode{../problems/w08/Collisions/Collisions1.cpp}
         
     \section{Diet}
+        \index{LP!Feasibility}
         \includecode{../problems/w08/Diet/Diet1.cpp}
         
     \section{Porfolios}
+        \index{QP!Optimality}
+        \index{QP!set\texttt{\_}d()}
         \includecode{../problems/w08/Portfolios/Portfolios1.cpp}
     
     \section{Inball}
+        \index{LP!Optimality}
+        \index{LP!Maximization}
         \includecode{../problems/w08/Inball/Inball1.cpp}
     
     %%%%%% week 9
     
     \section{Monkey Island}
+        \index{Strongly connected components}
         \includecode{../problems/w09/MonkeyIsland/MonkeyIsland1.cpp}
         
     \section{Placing Knights}
+        \index{Maximum Matching}
+        \index{Graph transformation!Grid - Graph}
+        \index{Koenigstheorem}
         \includecode{../problems/w09/Placing_Knights/PlacingKnights1.cpp}
         
     \section{Shopping Trip}
+        \index{Network Flow!Edge-disjoint Paths}
         \includecode{../problems/w09/Shopping_Trip/ShoppingTrip1.cpp}
         
     \section{TheeV}
+        \index{Min Circle}
+        \index{Cut point two sets}
+        \index{ceil\texttt{\_}to\texttt{\_}double}
         \includecode{../problems/w09/TheeV/TheeV1.cpp}
    
     %%%%%% week 10
     
     \section{Poker Chips}
+        \index{DP!Top down}
+        \index{DP!Multiway choices}
+        \index{Bit operations}
         \includecode{../problems/w10/Poker_Chips/PokerChips1.cpp}
         
     \section{Portfolio Revisited}
+        \index{QP!Optimality}
+        \index{Binary Search}
+        \index{Binary Search!Map}
         \includecode{../problems/w10/Portfolios_Revisited/PortfolioRevisited1.cpp}
         
     \section{Stamp Exhibition}
+        \index{LP!Feasibility}
+        \index{LP!No Objective Function}
+        \index{Intersection!Segment - Segment}
         \includecode{../problems/w10/Stamp_Exhibition/Stamps1.cpp}
         
     \section{Tetris}
+        \index{Network Flow!Vertex-disjoint Paths}
+        \index{Network Flow!Edge-disjoint Paths}
         \includecode{../problems/w10/Tetris/Tetris1.cpp}
  
     %%%%%% week 11
     
     \section{Beach Bar}
+        \index{Greedy}
+        \index{Scanline!Shortest interval}
         \includecode{../problems/w11/Beach_Bar/BeachBar1.cpp}
         
     \section{Cover}
+        \index{Delaunay!Finite Faces Iterator}
+        \index{Delaunay!Finite Edges Iterator}
+        \index{Intersection!Dynamic type}
         \includecode{../problems/w11/Cover/Cover1.cpp}
         
     \section{Divisor Distance}
+        \index{Posting list intersection}
         \includecode{../problems/w11/Divisor_Distance/DivisorDistance1.cpp}
         
     \section{Tiles}
+        \index{Maximum Matching!Perfect Matching}
         \includecode{../problems/w11/Tiles/Tiles1.cpp}
     
     \section{Connecting Capitals}
+        \index{Maximum Matching!Tree}
         All the following algorithms run in linear time.
         
         \subsection{Maximum Matching in Tree}
+        \begin{itemize}
+            \item Idea: recursive algorithm, the basecases are the leaves with Matching 0.
+            \item At each vertex $v$ the maximum matching of the subtree rooted at $v$.
+        \end{itemize}
         \includecode{../problems/w11/Connecting_Capitals/MaximumMatchingTree.cpp}
         
         \subsection{Outputting Maximum Matching}
@@ -257,26 +356,41 @@ numberstyle=\tiny\color{gray}
         %\includecode{../problems/w12/Deleted_Entries_Strike_Back/Sol1.cpp}
         
     \section{Light The Stage}
+        \index{Delaunay!Nearest Vertex\texttt{\_}handle}
+        \index{Binary Search}
         \includecode{../problems/w12/LightTheStage/LightTheStage1.cpp}
         
     \section{Radiation}
+        \index{LP!Polynomial coefficients}
+        \index{Binary Search}
         \includecode{../problems/w12/Radiation/Radiation1.cpp}
         
     \section{Sweepers}
+        \index{Euler Graph}
+        \index{Network Flow}
         \includecode{../problems/w12/Sweepers/Sweepers1.cpp}
         
     \section{The Bracelet}
+        \index{Euler Graph}
+        \index{Euler Graph!Print Euler Tour}
         \includecode{../problems/w12/The_Bracelet/Bracelet1.cpp}
         
     %%%%%% week 13
     
     \section{Knights}
+        \index{Network Flow!Vertex-disjoint paths}
+        \index{Graph transformation!Grid - Graph}
         \includecode{../problems/w13/Knights/Knights1.cpp}
         
     \section{Next Path}
+        \index{Dijkstra}
+        \index{BFS!SSSP}
         \includecode{../problems/w13/NextPath/NextPath1.cpp}
         
     \section{Odd Route}
+        \index{Dijkstra}
+        \index{Dijkstra!Parallel Edges}
+        \index{Graph transformation!Graph - Graph}
         \includecode{../problems/w13/OddRoute/OddRoute1.cpp}
         
     \section{Radiation 2}
